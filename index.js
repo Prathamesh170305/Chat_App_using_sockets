@@ -10,13 +10,10 @@ const io=socketio(server);
 io.on('connection',(socket)=>{
     console.log('a user connected',socket.id)
 
-    socket.on('from_client',()=>{
-        //console.log('from client recieved');
+    socket.on('msg_send',(data)=>{
+        io.emit('msg_rcvd',data);
     })
 
-    setInterval(()=>{
-        socket.emit('from_server')
-    },2000);
 })
 
 //to connect to the index.html
